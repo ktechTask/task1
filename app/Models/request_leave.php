@@ -10,4 +10,9 @@ class request_leave extends Model
     use HasFactory;
     protected $table = 'request_leave';
     protected $guarded = [];
+
+    public function dayoff_type()
+    {
+        return $this->hasOne(dayoff_type::class, 'id', 'type_dayoff_id');
+    }
 }

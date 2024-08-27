@@ -15,10 +15,10 @@
                     <form action="{{ route('admin.storeRequest') }}" method="post">
                         @csrf
                         <div class="row">
-                            <input type="text" name="user_id" value="{{ $user->id }}" hidden id="">
-                            <div class="col-6">
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <div class="col-6"> 
                                 <div class="form-floating mb-3">
-                                    <input type="name" class="form-control" name="{{ $user->name }}"  id="floating-input"
+                                    <input type="name" class="form-control"  id="floating-input"
                                         value="{{ $user->name }}" autocomplete="off">
                                     <label for="floating-input">Tên nhân viên</label>
                                 </div>
@@ -26,13 +26,13 @@
                             <div class="col-6">
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floating-input"
-                                        value="{{ $user->email }}" name="email" autocomplete="off">
+                                        value="{{ $user->email }}" autocomplete="off">
                                     <label for="floating-input">Email </label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
-                                    <select type="text" name='type' class="form-select" id="select-users"
+                                    <select type="text" name='type_dayoff_id' class="form-select" id="select-users"
                                         value="">
                                         <option>Lý do nghỉ</option>
                                         @foreach ($types as $type)
@@ -44,8 +44,8 @@
 
                             <div class="col-4">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " name="start_date" placeholder="Ngày bắt đầu" id="datepicker-icon"
-                                        value="" />
+                                    <input class="form-control " placeholder="Ngày bắt đầu" id="datepicker-icon"
+                                         />
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -66,8 +66,8 @@
 
                             <div class="col-4">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control "  name="end_date" placeholder="Ngày kết thúc" id="datepicker-icon"
-                                        value="" />
+                                    <input class="form-control " placeholder="Ngày kết thúc" id="datepicker-icon"
+                                       />
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"

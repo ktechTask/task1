@@ -46,17 +46,15 @@
             {{-- {{ dd($history); }} --}}
             @foreach ($history as $item)
             <tr>
-                @php
-                    $dayoffType = DB::table('dayoff_type')->where('id', $item->status)->first();
-                @endphp
-                <td>{{ $dayoffType ? $dayoffType->type_name : 'Unknown' }}</td>
+                <td>{{ $item->dayoff_type->type_name ? $item->dayoff_type->type_name : 'Unknown' }}</td>
                 <td>{{ $item->start_day }}</td>
                 <td>{{ $item->end_day }}</td>
                 <td>
-                    @if ($item->status == 0)
+                    
+                    @if ($item->status == 'pending')
                         Chưa xử lý
                     @else
-                        {{ $item->status == 1 ? 'Đã duyệt' : 'Bị từ chối' }}
+                        {{ $item->status == 'approve' ? 'Đã duyệt' : 'Bị từ chối' }}
                     @endif
                 </td>
             </tr>

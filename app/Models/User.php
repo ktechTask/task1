@@ -44,4 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function userDayOff(){
+        return $this->hasMany(User_DayOff::class,'user_id');
+    }
 }

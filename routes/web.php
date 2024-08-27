@@ -13,6 +13,7 @@ Route::prefix('admin')->middleware(['auth','roles'])->name('admin.')->group(func
     Route::post('/filter', [AdminController::class, 'filter'])->name('filter');
     Route::post('/changeStt', [AdminController::class, 'changeStt'])->name('changeStt');
     Route::get('/listUser', [AdminController::class, 'listUser'])->name('listUser');
+    Route::post('/listFilter', [AdminController::class, 'listFilter'])->name('listFilter');
     Route::get('/createRequest', [AdminController::class, 'createRequest'])->name('createRequest');
     Route::get('/formRequest/{id}', [AdminController::class, 'formRequest'])->name('formRequest');
     Route::post('/storeRequest', [AdminController::class, 'storeRequest'])->name('storeRequest');

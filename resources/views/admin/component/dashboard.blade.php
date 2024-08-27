@@ -35,19 +35,20 @@
                                     <div class="col-4">
                                         <select class="form-select" name="status" id="">
                                             <option value="">Filter by status</option>
-                                            <option value="0"
-                                                {{ old('status', request()->status) == '0' ? 'selected' : '' }}>
+                                            <option value="pending"
+                                                {{ old('status', request()->status) == 'pending' ? 'selected' : '' }}>
                                                 Chưa xử lý</option>
-                                            <option value="1"
-                                                {{ old('status', request()->status) == '1' ? 'selected' : '' }}>
+                                            <option value="deject"
+                                                {{ old('status', request()->status) == '' ? 'deject' : '' }}>
                                                 Từ chối</option>
-                                            <option value="2"
-                                                {{ old('status', request()->status) == '2' ? 'selected' : '' }}>
+                                            <option value="approve"
+                                                {{ old('status', request()->status) == 'approve' ? 'selected' : '' }}>
                                                 Xác nhận</option>
                                         </select>
                                     </div>
                                     <div class="col-2"> 
-                                        <button type="submit" class="btn btn-primary ms-auto  ms-5">Send data</button>
+                                        
+                                        
                                     </div>
                                 </div>
 
@@ -77,13 +78,13 @@
                                         <td>{{ $item->end_day }}</td>
                                         <td>{{ $item->type_name }}</td>
                                         <td>
-                                            @if ($item->status == 0)
-                                                <span class="badge bg-warning text-dark" data-id="{{ $item->id }}">Chưa
+                                            @if ($item->status == 'pending')
+                                                <span class="badge bg-warning text-dark" data-id-show="{{ $item->id }}">Chưa
                                                     xử lý</span>
-                                            @elseif ($item->status == 1)
-                                                <span class="badge bg-danger" data-id="{{ $item->id }}">Từ chối</span>
+                                            @elseif ($item->status == 'deject')
+                                                <span class="badge bg-danger" data-id-show="{{ $item->id }}">Từ chối</span>
                                             @else
-                                                <span class="badge bg-success" data-id="{{ $item->id }}">Đồng ý</span>
+                                                <span class="badge bg-success" data-id-show="{{ $item->id }}">Đồng ý</span>
                                             @endif
                                         </td>
                                         <td>
@@ -95,9 +96,9 @@
 
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                     <li><span class="changeStt btn" data-id="{{ $item->id }}"
-                                                            data-stt="2">Từ chối</span></li>
+                                                            data-stt="deject">Từ chối</span></li>
                                                     <li><span class="changeStt btn " data-id="{{ $item->id }}"
-                                                            data-stt="3">Đồng ý</span></li>
+                                                            data-stt="approve">Đồng ý</span></li>
                                                 </ul>
                                             </div>
 
@@ -107,40 +108,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer d-flex align-items-center">
-                        <p class="m-0 text-secondary">Showing <span>1</span> to <span>8</span> of <span>16</span> entries
-                        </p>
-                        <ul class="pagination m-0 ms-auto">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M15 6l-6 6l6 6" />
-                                    </svg>
-                                    prev
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M9 6l6 6l-6 6" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                
                 </div>
             </div>
         </div>
@@ -162,11 +130,11 @@
                     success: function(response) {
                         if (response.success) {
                             alert('Thay đổi thành công');
-                            var statusBadge = $('span[data-id="' + id + '"]');
-                            if (stt == 2) {
+                            var statusBadge = $('span[data-id-show="' + id + '"]');
+                            if (stt == 'deject') {
                                 statusBadge.removeClass('bg-success bg-warning').addClass(
                                     'bg-danger').text('Từ chối');
-                            } else if (stt == 3) {
+                            } else if (stt == 'approve') {
                                 statusBadge.removeClass('bg-danger bg-warning').addClass(
                                     'bg-success').text('Đồng ý');
                             }
